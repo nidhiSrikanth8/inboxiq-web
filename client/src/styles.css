@@ -1,0 +1,167 @@
+:root{
+  --bg-gradient: radial-gradient(circle at 20% 20%, #0f172a 0%, #1e1b4b 60%, #0f172a 100%);
+  --card-bg: rgba(20,22,35,0.65);
+  --card-gradient: linear-gradient(145deg, rgba(138,92,255,0.12), rgba(0,255,224,0.1));
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #7dd3fc;
+  --border: rgba(255,255,255,0.08);
+  --radius: 18px;
+  --shadow: 0 12px 32px rgba(0,0,0,0.4);
+  --hover-glow: 0 0 18px 3px rgba(56,189,248,0.6);
+  --font: "Inter",system-ui,-apple-system,Segoe UI,Roboto;
+}
+
+body{
+  margin:0;
+  font-family:var(--font);
+  background:var(--bg-gradient);
+  background-attachment:fixed;
+  color:var(--text);
+  min-height:100vh;
+  letter-spacing:0.2px;
+}
+
+/* make the container full-width */
+.container{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:32px 5vw;   /* slight side padding for breathing room */
+  box-sizing:border-box;
+}
+
+header{
+  text-align:center;
+  color:#cbd5e1;
+  text-shadow:0 2px 10px rgba(56,189,248,0.4);
+  margin-bottom:30px;
+}
+header h1{
+  font-size:30px;
+  font-weight:800;
+  margin:0;
+  background:linear-gradient(90deg,#a78bfa,#67e8f9);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+header p{
+  font-size:14px;
+  color:#94a3b8;
+}
+
+/* controls stretch full width */
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:22px;
+  background:rgba(255,255,255,0.05);
+  padding:12px 14px;
+  border-radius:12px;
+  backdrop-filter:blur(10px);
+}
+.search,.filter,.clear{
+  flex:1 1 auto;
+  min-width:150px;
+  font-size:14px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  padding:8px 10px;
+  background:rgba(255,255,255,0.05);
+  color:var(--text);
+}
+.search:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+.clear{
+  cursor:pointer; font-weight:600;
+  color:var(--accent);
+  background:rgba(255,255,255,0.08);
+  transition:background .2s;
+}
+.clear:hover{ background:rgba(255,255,255,0.15); }
+
+/* conversation cards span full width */
+.card{
+  width:100%;
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+  margin-bottom:18px;
+  backdrop-filter:blur(12px);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  transition:transform .25s ease, box-shadow .25s ease, border .25s ease;
+  position:relative;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:var(--radius);
+  background:var(--card-gradient);
+  opacity:0;
+  transition:opacity .4s ease;
+  z-index:0;
+}
+.card:hover{
+  transform:translateY(-4px) scale(1.01);
+  box-shadow:0 0 40px rgba(168,85,247,0.3);
+  border-color:rgba(124,58,237,0.6);
+}
+.card:hover::before{ opacity:1; }
+.card > *{ position:relative; z-index:1; }
+
+.avatar{
+  width:56px;height:56px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, #38bdf8, #1e1b4b 90%);
+  border:1px solid rgba(255,255,255,0.12);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:20px;color:#f0f9ff;
+}
+.name{ font-weight:700;font-size:16px; color:#f1f5f9; }
+.preview-line{ color:var(--muted); margin:6px 0; font-size:14px; }
+.badge.unread{
+  background:rgba(168,85,247,0.2);
+  border-radius:999px;
+  padding:4px 10px;
+  color:#f0f9ff;
+}
+.priority-pill{
+  border-radius:999px;
+  padding:4px 10px;
+  border:1px solid rgba(255,255,255,0.1);
+  font-weight:600;
+  font-size:13px;
+  background:linear-gradient(135deg,rgba(168,85,247,0.25),rgba(34,211,238,0.25));
+  color:#e0f2fe;
+}
+.star{
+  background:none;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+  color:#fbbf24;
+  transition:transform .25s ease, text-shadow .25s ease;
+}
+.star:hover{ transform:scale(1.3); text-shadow:0 0 8px rgba(251,191,36,0.6); }
+.starred{ color:#facc15; text-shadow:0 0 8px rgba(250,204,21,0.8); }
+
+.loading,.empty{
+  text-align:center;
+  padding:20px;
+  color:#a78bfa;
+  font-weight:500;
+}
+
+@media (max-width:720px){
+  .controls{ flex-direction:column; align-items:stretch; }
+  .card{ flex-direction:column; }
+  .avatar{ width:48px; height:48px; font-size:16px; }
+}
