@@ -43,3 +43,10 @@ The result? A clean, futuristic workspace that feels bold yet calm.
 | Backend | Node.js + Express |
 | Database | SQLite using `better-sqlite3` |
 | Other tools | CORS, REST APIs, modular structure for scalability |
+
+## ⚙️ How to run it locally
+
+```bash
+# clone the repo
+git clone https://github.com/nidhiSrikanth8/inboxiq-web.git
+cd inboxiq-web
